@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f172a">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TEW – Production Management System v61</title>
 <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
@@ -186,12 +191,134 @@ tbody tr:last-child td{border-bottom:none;}
 /* CALC DISPLAY */
 .calc-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:5px;padding:10px 14px;margin-top:8px;font-size:12.5px;color:#15803d;}
 
+/* ── TABLET ── */
 @media(max-width:900px){
   .sidebar{width:52px;}
   .nav-item span:not(.nav-icon){display:none;}
   .nav-section{display:none;}
   .stats-grid{grid-template-columns:1fr 1fr;}
   .form-grid-2,.form-grid-3,.form-grid-4{grid-template-columns:1fr;}
+}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  /* Header */
+  .header{padding:8px 12px;flex-wrap:wrap;gap:6px;}
+  .header h1{font-size:15px;}
+  .header p{display:none;}
+  
+  /* Cloud bar */
+  #cloud-bar{padding:6px 10px;gap:6px;}
+  #cloud-bar .cb-label{font-size:11px;}
+  #cloud-status{font-size:10px;padding:2px 8px;}
+  .cb-btn2{padding:4px 8px;font-size:11px;}
+  #cloud-time{display:none;}
+
+  /* Layout — stack sidebar on top as bottom nav */
+  .layout{flex-direction:column;}
+  
+  /* Sidebar becomes bottom navigation bar */
+  .sidebar{
+    width:100% !important;
+    height:56px;
+    flex-direction:row;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:0;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    display:flex;
+    border-top:2px solid #e85d14;
+    -webkit-overflow-scrolling:touch;
+  }
+  .nav-section{display:none;}
+  .nav-item{
+    flex-direction:column;
+    padding:6px 10px;
+    min-width:60px;
+    border-left:none !important;
+    border-top:3px solid transparent;
+    font-size:9px;
+    gap:2px;
+    flex-shrink:0;
+  }
+  .nav-item.active{border-top-color:#ffb38a;border-left:none;}
+  .nav-item span.nav-icon{font-size:18px;}
+  .nav-item span:not(.nav-icon){display:block !important;font-size:9px;}
+  
+  /* Main content — add bottom padding for nav bar */
+  .main{
+    padding:10px;
+    margin-bottom:60px;
+    overflow-y:auto;
+  }
+  
+  /* Page titles */
+  .page-title{font-size:16px;}
+  
+  /* Stats grid */
+  .stats-grid{grid-template-columns:1fr 1fr !important;gap:8px;}
+  .stat-card{padding:10px;}
+  .stat-value{font-size:20px;}
+  .stat-label{font-size:10px;}
+  
+  /* Forms */
+  .form-grid-2,.form-grid-3,.form-grid-4{grid-template-columns:1fr !important;}
+  .form-group label{font-size:12px;}
+  .form-group input,.form-group select,.form-group textarea{
+    font-size:16px !important; /* prevents zoom on iOS */
+    padding:10px;
+  }
+  
+  /* Buttons */
+  .btn{padding:8px 14px;font-size:12px;}
+  .btn-sm{padding:5px 10px;font-size:11px;}
+  
+  /* Tables — make scrollable */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{min-width:500px;font-size:12px;}
+  th,td{padding:8px 6px;}
+  
+  /* Modals */
+  .modal-box{
+    width:96vw !important;
+    max-width:96vw !important;
+    margin:10px;
+    padding:16px;
+    max-height:85vh;
+    overflow-y:auto;
+  }
+  .modal-title{font-size:15px;}
+  
+  /* Cards */
+  .card{padding:12px;}
+  .card-title{font-size:13px;}
+  
+  /* Toolbar */
+  .toolbar{flex-wrap:wrap;gap:8px;}
+  .toolbar input{width:100%;font-size:16px !important;}
+  
+  /* Section tabs */
+  .tab-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .tab-btn{padding:6px 12px;font-size:12px;white-space:nowrap;}
+  
+  /* Pin lock screen */
+  #lock-box{padding:24px 20px;width:90vw;}
+  .pb{width:60px;height:60px;font-size:20px;}
+  #pin-grid{gap:8px;}
+  
+  /* Dashboard stats - 2 columns */
+  #dashStats{grid-template-columns:1fr 1fr !important;}
+}
+
+/* ── VERY SMALL PHONES ── */
+@media(max-width:360px){
+  .pb{width:52px;height:52px;font-size:18px;}
+  .nav-item{min-width:50px;padding:6px 6px;}
+  .stats-grid{grid-template-columns:1fr 1fr !important;}
 }
 
 #cloud-bar{background:#0f172a;color:#e2e8f0;padding:8px 22px;display:flex;align-items:center;gap:12px;font-size:12px;border-bottom:2px solid #e85d14;flex-wrap:wrap;}
